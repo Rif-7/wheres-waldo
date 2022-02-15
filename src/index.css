@@ -16,10 +16,48 @@ nav {
 }
 
 .img-container {
-  padding: 5px;
   cursor: crosshair;
 }
 
 .waldo-img {
   width: 100%;
+}
+
+.selector-modal {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.highlight {
+  background-color: transparent;
+  border: 5px double black;
+  width: 80px;
+  height: 80px;
+  border-radius: 60px;
+  box-sizing: border-box;
+}
+
+.options {
+  margin-top: 25px;
+}
+
+.option {
+  background-color: white;
+  padding: 5px;
+  font-size: 18px;
+  width: fit-content;
+}
+
+.option:hover {
+  background-color: black;
+  color: white;
+}
+
+.selector-content {
+  background-color: transparent;
+  display: flex;
+  position: absolute;
+  left: 0px;
 }

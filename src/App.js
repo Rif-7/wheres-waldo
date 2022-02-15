@@ -15,19 +15,16 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
-function App() {
-  function logCords(e) {
-    console.log(e.nativeEvent.offsetX);
-    console.log(e.nativeEvent.offsetY);
-  }
+const waldoPos = {
+  waldo: { x: 1073, y: 79 },
+  odlaw: { x: 69, y: 637 },
+};
 
+function App() {
   return (
     <div>
       <Navbar />
-      <ImgContainer
-        clickHandler={logCords}
-        imgUrl="./imgs/wheres-waldo-1.jpg"
-      />
+      <ImgContainer imgUrl="./imgs/wheres-waldo-1.jpg" />
     </div>
   );
 }
