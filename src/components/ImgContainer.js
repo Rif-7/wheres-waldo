@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import Selector from "./Selector";
 
-function ImgContainer(props) {
-  const [cords, setCords] = useState({ x: 0, y: 0 });
+const waldoPos = {
+  waldo: { x: 1087, y: 85 },
+  odlaw: { x: 71, y: 641 },
+};
 
-  function logCords(e) {
-    const [userX, userY] = [e.nativeEvent.offsetX, e.nativeEvent.offsetY];
-    setCords({ x: userX, y: userY });
-    console.log("X: ", userX);
-    console.log("Y: ", userY);
+function ImgContainer(props) {
+  function checkPosition(userX, userY, name) {
+    const { x, y } = waldoPos[name];
+    const distance = Math.sqrt((x - userX) ** 2 + (y - userY) ** 2);
+    distance < 50
+      ? console.log("you found", name)
+      : console.log(name, "is not there");
   }
+
   return (
     <div className="img-container">
-      <Selector clickHandler={logCords} cords={cords} />
+      <Selector checkPosition={checkPosition} />
       <img
         src={props.imgUrl}
         className="waldo-img"

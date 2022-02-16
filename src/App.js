@@ -15,11 +15,6 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
-const waldoPos = {
-  waldo: { x: 1073, y: 79 },
-  odlaw: { x: 69, y: 637 },
-};
-
 function App() {
   return (
     <div>
