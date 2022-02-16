@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+const options = ["waldo", "odlaw", "woof"];
+
 function Selector(props) {
   const [selectorClass, setSelectorClass] = useState(
     "selector-content hidden-selector"
@@ -29,8 +31,9 @@ function Selector(props) {
     updateCords(e);
   }
 
-  function handlePosition(e) {
-    checkPosition(cords["x"], cords["y"], e.target.getAttribute("data-value"));
+  function selectOption(e) {
+    const name = e.target.getAttribute("data-value");
+    checkPosition(cords["x"], cords["y"], name);
   }
 
   return (
@@ -38,12 +41,19 @@ function Selector(props) {
       <div className={selectorClass} style={selectorStyle}>
         <div className="highlight"></div>
         <div className="options">
-          <div className="option" data-value="waldo" onClick={handlePosition}>
-            Waldo
-          </div>
-          <div className="option" data-value="odlaw" onClick={handlePosition}>
-            Odlaw
-          </div>
+          {/* Loop through the options array and render each option to the dom */}
+          {options.map((option, index) => {
+            return (
+              <div
+                className="option"
+                data-value={option}
+                onClick={selectOption}
+                key={index}
+              >
+                {option}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

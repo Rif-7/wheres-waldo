@@ -4,13 +4,13 @@ body {
 }
 
 nav {
-  height: 60px;
+  height: fit-content;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   background-color: rgb(235, 76, 76);
   color: white;
-  font-size: 32px;
+  font-size: 48px;
   font-weight: 700;
   padding: 5px;
 }
@@ -41,13 +41,14 @@ nav {
 
 .options {
   margin-top: 25px;
+  user-select: none;
 }
 
 .option {
   background-color: white;
   padding: 5px;
   font-size: 18px;
-  width: fit-content;
+  width: 100%;
 }
 
 .option:hover {
@@ -64,4 +65,19 @@ nav {
 
 .hidden-selector {
   display: none;
+}
+
+.images {
+  display: flex;
+  font-size: 18px;
+}
+
+.nav-img {
+  width: 80px;
+  height: 80px;
+  margin-left: 3px;
+}
+
+.nav-img-container {
+  text-align: center;
 }
