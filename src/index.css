@@ -17,6 +17,7 @@ nav {
 
 .img-container {
   cursor: crosshair;
+  position: absolute;
 }
 
 .waldo-img {
@@ -31,8 +32,8 @@ nav {
 }
 
 .highlight {
-  background-color: transparent;
-  border: 5px double black;
+  background-color: rgb(0, 255, 0, 0.4);
+  border: 5px dashed green;
   width: 80px;
   height: 80px;
   border-radius: 60px;

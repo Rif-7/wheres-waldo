@@ -1,7 +1,9 @@
 import React from "react";
-import { initializeApp } from "firebase/app";
 import Navbar from "./components/Navbar";
 import ImgContainer from "./components/ImgContainer";
+
+import { initializeApp } from "firebase/app";
+import { getFireStore, addDoc, collection } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDPAG6GIZAvNy99fj5tHtjT5tm4uLIP5U4",
