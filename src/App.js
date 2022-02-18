@@ -11,6 +11,7 @@ import {
   serverTimestamp,
   doc,
   updateDoc,
+  getDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -26,7 +27,11 @@ initializeApp(firebaseConfig);
 
 const db = getFirestore();
 
-// Initialize Firebase
+const waldoPos = {
+  woof: "4mX9Cb18EFXZQg9OHja4",
+  odlaw: "DQ77QmuGzTN8U2Gqffqg",
+  waldo: "LFemWDS9Z2V5JodNM2JR",
+};
 
 function App() {
   const [userId, setUserId] = useState("");
@@ -50,6 +55,7 @@ function App() {
   }
 
   function timeUser(username) {
+    if (!username) return;
     addDoc(collection(db, "timing"), {
       username: username,
       startTime: serverTimestamp(),
@@ -62,12 +68,25 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  console.log(userId);
+  async function checkPosition(userX, userY, name) {
+    const charId = waldoPos[name];
+    const charRef = doc(db, "locations", charId);
+    const charSnap = await getDoc(charRef);
+    const [x, y] = [charSnap.data()["x-cord"], charSnap.data()["y-cord"]];
+    const distance = Math.sqrt((x - userX) ** 2 + (y - userY) ** 2);
+    distance < 30
+      ? console.log("you found", name)
+      : console.log(name, "is not there");
+  }
+
   return (
-    <div>
+    <div className="container">
       <Navbar />
       {showSetUp ? <SetUser timeUser={timeUser} /> : null}
-      <ImgContainer imgUrl="./imgs/wheres-waldo-1.jpg" />
+      <ImgContainer
+        imgUrl="./imgs/wheres-waldo-1.jpg"
+        checkPosition={checkPosition}
+      />
     </div>
   );
 }

@@ -1,20 +1,8 @@
 import React from "react";
 import Selector from "./Selector";
 
-const waldoPos = {
-  waldo: { x: 1087, y: 85 },
-  odlaw: { x: 71, y: 641 },
-  woof: { x: 83, y: 416 },
-};
-
 function ImgContainer(props) {
-  function checkPosition(userX, userY, name) {
-    const { x, y } = waldoPos[name];
-    const distance = Math.sqrt((x - userX) ** 2 + (y - userY) ** 2);
-    distance < 30
-      ? console.log("you found", name)
-      : console.log(name, "is not there");
-  }
+  const { checkPosition } = props;
 
   return (
     <div className="img-container">
