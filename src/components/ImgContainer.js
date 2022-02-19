@@ -2,11 +2,12 @@ import React from "react";
 import Selector from "./Selector";
 
 function ImgContainer(props) {
-  const { makeMove } = props;
+  const { makeMove, gameStarted, gameState } = props;
+  const style = gameStarted ? {} : { pointerEvents: "none" };
 
   return (
-    <div className="img-container">
-      <Selector makeMove={makeMove} />
+    <div className="img-container" style={style}>
+      <Selector makeMove={makeMove} gameState={gameState} />
       <img
         src={props.imgUrl}
         className="waldo-img"

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import ImgContainer from "./components/ImgContainer";
 import SetUser from "./components/SetUser";
+import GameResult from "./components/GameResult";
 
 import { initializeApp } from "firebase/app";
 import {
@@ -13,6 +14,7 @@ import {
   updateDoc,
   getDoc,
 } from "firebase/firestore";
+import { getActiveElement } from "@testing-library/user-event/dist/utils";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDPAG6GIZAvNy99fj5tHtjT5tm4uLIP5U4",
@@ -35,7 +37,9 @@ const waldoPos = {
 
 function App() {
   const [userId, setUserId] = useState("");
+  const [gameStarted, setGameStarted] = useState(false);
   const [showSetUp, setShowSetUp] = useState(true);
+  const [gameResult, setGameResult] = useState();
   const [gameState, setGameState] = useState({
     waldo: false,
     odlaw: false,
@@ -44,26 +48,29 @@ function App() {
 
   useEffect(() => {
     if (userId === "") {
-      setShowSetUp(true);
+      setGameStarted(false);
       return;
     }
+    setGameStarted(true);
     setShowSetUp(false);
   }, [userId]);
 
-  useEffect(() => {
+  useEffect(async () => {
     // checks if every item of the gameState is set to true
     const isGameFinished = Object.keys(gameState).every(
       (key) => gameState[key]
     );
     if (isGameFinished) {
+      setGameStarted(false);
       console.log("game finished");
-      setEndTime();
+      await setEndTime();
+      endGame();
     }
   }, [gameState]);
 
-  function setEndTime() {
+  async function setEndTime() {
     const userRef = doc(db, "timing", userId);
-    updateDoc(userRef, {
+    await updateDoc(userRef, {
       endTime: serverTimestamp(),
     })
       .then(() => console.log("timer ended"))
@@ -96,9 +103,9 @@ function App() {
     return distance < 30;
   }
 
-  function makeMove(userX, userY, name) {
+  async function makeMove(userX, userY, name) {
     if (userId === "") return;
-    const result = checkPosition(userX, userY, name);
+    const result = await checkPosition(userX, userY, name);
     if (result) {
       const newGameState = Object.assign({}, gameState);
       newGameState[name] = true;
@@ -106,15 +113,26 @@ function App() {
     }
   }
 
-  function endGame() {
-    return;
+  async function endGame() {
+    const userRef = doc(db, "timing", userId);
+    const userDoc = await getDoc(userRef).then((res) => res.data());
+    const { startTime, endTime, username } = userDoc;
+    const secondsTaken = Math.round(endTime - startTime);
+    setGameResult({ username, secondsTaken });
+    console.log(secondsTaken, "seconds to complete");
   }
 
   return (
     <div className="container">
       <Navbar />
       {showSetUp ? <SetUser timeUser={timeUser} /> : null}
-      <ImgContainer imgUrl="./imgs/wheres-waldo-1.jpg" makeMove={makeMove} />
+      {!gameStarted && !showSetUp ? <GameResult {...gameResult} /> : null}
+      <ImgContainer
+        imgUrl="./imgs/wheres-waldo-1.jpg"
+        makeMove={makeMove}
+        gameStarted={gameStarted}
+        gameState={gameState}
+      />
     </div>
   );
 }

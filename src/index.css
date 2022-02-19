@@ -15,6 +15,7 @@ nav {
   padding: 5px;
 }
 
+
 .img-container {
   cursor: crosshair;
   position: absolute;
@@ -32,8 +33,8 @@ nav {
 }
 
 .highlight {
-  background-color: rgb(0, 255, 0, 0.4);
-  border: 5px dashed green;
+  background-color: rgb(235, 76, 76, 0.5);
+  border: 5px dashed rgb(235, 76, 76);
   width: 80px;
   height: 80px;
   border-radius: 60px;
@@ -43,18 +44,23 @@ nav {
 .options {
   margin-top: 25px;
   user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .option {
-  background-color: white;
+  background-color: rgb(235, 76, 76);
+  color: white;
   padding: 5px;
-  font-size: 18px;
+  font-size: 22px;
   width: 100%;
+  border-radius: 4px;
+  text-align: center;
 }
 
 .option:hover {
-  background-color: black;
-  color: white;
+  background-color: #3882f6;
 }
 
 .selector-content {
@@ -83,7 +89,7 @@ nav {
   text-align: center;
 }
 
-.set-user {
+.set-user, .game-result {
   z-index: 2;
   position: absolute;
   width: 100%;
@@ -91,7 +97,7 @@ nav {
   background-color: rgb(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding-top: 32px;
   color: white;
 }
 
@@ -112,14 +118,57 @@ nav {
   background-color: transparent;
   border-bottom: 3px solid white;
   text-align: center;
+  margin-bottom: 5px;
 }
 
-.start-btn {
-  border: none;
+
+.game-result {
+  background-color: rgb(0, 0, 0, 0.4);
+
+}
+
+.result-content {
+  padding: 12px;
+  background-color: #3882f6;
+  height: fit-content;
   border-radius: 4px;
-  font-size: 18px;
+}
+
+.result-header {
+  font-size: 32px;
+  font-weight: 700px
+}
+
+.stat-container {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.btn-div {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+}
+
+.btn-div button, .start-btn {
+  border-radius: 4px;
   padding: 6px 10px;
-  margin-top: 5px;
+  border: 2px solid white;
+  background-color: inherit;
   font-family: inherit;
+  font-size: 18px;
   font-weight: 700;
+  color: white;
+}
+
+.btn-div button:hover, .start-btn:hover {
+  box-shadow: -5px 5px 5px #888;
+}
+
+.set-user .content {
+  background-color: #3882f6;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 4px;
+  padding: 12px;
 }

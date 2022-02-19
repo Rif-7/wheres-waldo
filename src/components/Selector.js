@@ -7,7 +7,7 @@ function Selector(props) {
     "selector-content hidden-selector"
   );
   const [cords, setCords] = useState({ x: 0, y: 0 });
-  const { makeMove } = props;
+  const { makeMove, gameState } = props;
 
   function updateCords(e) {
     const [userX, userY] = [e.nativeEvent.offsetX, e.nativeEvent.offsetY];
@@ -36,6 +36,9 @@ function Selector(props) {
     makeMove(cords["x"], cords["y"], name);
   }
 
+  const createStyle = (clicked) =>
+    clicked ? { pointerEvents: "none", backgroundColor: "green" } : {};
+
   return (
     <div className="selector-modal" onClick={handleClick}>
       <div className={selectorClass} style={selectorStyle}>
@@ -49,6 +52,7 @@ function Selector(props) {
                 data-value={option}
                 onClick={selectOption}
                 key={index}
+                style={createStyle(gameState[option])}
               >
                 {option}
               </div>
