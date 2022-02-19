@@ -36,6 +36,11 @@ const waldoPos = {
 function App() {
   const [userId, setUserId] = useState("");
   const [showSetUp, setShowSetUp] = useState(true);
+  const [gameState, setGameState] = useState({
+    waldo: false,
+    odlaw: false,
+    woof: false,
+  });
 
   useEffect(() => {
     if (userId === "") {
@@ -44,6 +49,17 @@ function App() {
     }
     setShowSetUp(false);
   }, [userId]);
+
+  useEffect(() => {
+    // checks if every item of the gameState is set to true
+    const isGameFinished = Object.keys(gameState).every(
+      (key) => gameState[key]
+    );
+    if (isGameFinished) {
+      console.log("game finished");
+      setEndTime();
+    }
+  }, [gameState]);
 
   function setEndTime() {
     const userRef = doc(db, "timing", userId);
@@ -77,16 +93,28 @@ function App() {
     distance < 30
       ? console.log("you found", name)
       : console.log(name, "is not there");
+    return distance < 30;
+  }
+
+  function makeMove(userX, userY, name) {
+    if (userId === "") return;
+    const result = checkPosition(userX, userY, name);
+    if (result) {
+      const newGameState = Object.assign({}, gameState);
+      newGameState[name] = true;
+      setGameState(newGameState);
+    }
+  }
+
+  function endGame() {
+    return;
   }
 
   return (
     <div className="container">
       <Navbar />
       {showSetUp ? <SetUser timeUser={timeUser} /> : null}
-      <ImgContainer
-        imgUrl="./imgs/wheres-waldo-1.jpg"
-        checkPosition={checkPosition}
-      />
+      <ImgContainer imgUrl="./imgs/wheres-waldo-1.jpg" makeMove={makeMove} />
     </div>
   );
 }

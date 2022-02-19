@@ -7,7 +7,7 @@ function Selector(props) {
     "selector-content hidden-selector"
   );
   const [cords, setCords] = useState({ x: 0, y: 0 });
-  const { checkPosition } = props;
+  const { makeMove } = props;
 
   function updateCords(e) {
     const [userX, userY] = [e.nativeEvent.offsetX, e.nativeEvent.offsetY];
@@ -33,7 +33,7 @@ function Selector(props) {
 
   function selectOption(e) {
     const name = e.target.getAttribute("data-value");
-    checkPosition(cords["x"], cords["y"], name);
+    makeMove(cords["x"], cords["y"], name);
   }
 
   return (

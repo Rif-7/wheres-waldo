@@ -2,11 +2,11 @@ import React from "react";
 import Selector from "./Selector";
 
 function ImgContainer(props) {
-  const { checkPosition } = props;
+  const { makeMove } = props;
 
   return (
     <div className="img-container">
-      <Selector checkPosition={checkPosition} />
+      <Selector makeMove={makeMove} />
       <img
         src={props.imgUrl}
         className="waldo-img"
