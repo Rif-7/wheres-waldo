@@ -15,7 +15,10 @@ function SetUser(props) {
         <br></br>
         <input type="text" id="user-name" onChange={updateUsername}></input>
         <br></br>
-        <button className="start-btn" onClick={() => props.timeUser(username)}>
+        <button
+          className="start-btn"
+          onClick={(e) => props.timeUser(e, username)}
+        >
           Start
         </button>
       </div>

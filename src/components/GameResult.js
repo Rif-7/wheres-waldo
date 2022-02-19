@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-function GameResult({ username, secondsTaken }) {
+function GameResult({ username, secondsTaken, startNewGame }) {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div className="game-result">
       <div className="result-content">
@@ -10,7 +14,9 @@ function GameResult({ username, secondsTaken }) {
         </div>
         <div className="btn-div">
           <button className="leaderboard">Leaderboard</button>
-          <button className="new-game">New Game</button>
+          <button className="new-game" onClick={startNewGame}>
+            New Game
+          </button>
         </div>
       </div>
     </div>

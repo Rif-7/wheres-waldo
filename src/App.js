@@ -14,7 +14,6 @@ import {
   updateDoc,
   getDoc,
 } from "firebase/firestore";
-import { getActiveElement } from "@testing-library/user-event/dist/utils";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDPAG6GIZAvNy99fj5tHtjT5tm4uLIP5U4",
@@ -77,8 +76,12 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  function timeUser(username) {
+  function timeUser(e, username) {
     if (!username) return;
+
+    // change the text content of the button that sent this event to loading
+    e.target.textContent = "Loading";
+    e.target.disabled = true;
     addDoc(collection(db, "timing"), {
       username: username,
       startTime: serverTimestamp(),
@@ -122,11 +125,24 @@ function App() {
     console.log(secondsTaken, "seconds to complete");
   }
 
+  function startNewGame() {
+    setUserId("");
+    setGameResult();
+    setShowSetUp(true);
+    setGameState({
+      waldo: false,
+      odlaw: false,
+      woof: false,
+    });
+  }
+
   return (
     <div className="container">
       <Navbar />
       {showSetUp ? <SetUser timeUser={timeUser} /> : null}
-      {!gameStarted && !showSetUp ? <GameResult {...gameResult} /> : null}
+      {!gameStarted && !showSetUp ? (
+        <GameResult {...gameResult} startNewGame={startNewGame} />
+      ) : null}
       <ImgContainer
         imgUrl="./imgs/wheres-waldo-1.jpg"
         makeMove={makeMove}

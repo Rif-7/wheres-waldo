@@ -52,6 +52,7 @@ function Selector(props) {
                 data-value={option}
                 onClick={selectOption}
                 key={index}
+                // if the character has been found change it's styling
                 style={createStyle(gameState[option])}
               >
                 {option}
