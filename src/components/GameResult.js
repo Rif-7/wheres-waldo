@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 
-function GameResult({ username, secondsTaken, startNewGame }) {
+function GameResult({
+  username,
+  secondsTaken,
+  startNewGame,
+  toggleLeaderboard,
+}) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -13,7 +18,9 @@ function GameResult({ username, secondsTaken, startNewGame }) {
           You Took {secondsTaken} Seconds to Complete
         </div>
         <div className="btn-div">
-          <button className="leaderboard">Leaderboard</button>
+          <button className="show-leaderboard" onClick={toggleLeaderboard}>
+            Leaderboard
+          </button>
           <button className="new-game" onClick={startNewGame}>
             New Game
           </button>

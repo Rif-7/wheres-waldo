@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function SetUser(props) {
+function SetUser({ timeUser, toggleLeaderboard }) {
   const [username, setUsername] = useState("");
 
   function updateUsername(e) {
@@ -15,11 +15,11 @@ function SetUser(props) {
         <br></br>
         <input type="text" id="user-name" onChange={updateUsername}></input>
         <br></br>
-        <button
-          className="start-btn"
-          onClick={(e) => props.timeUser(e, username)}
-        >
+        <button className="start-btn" onClick={(e) => timeUser(e, username)}>
           Start
+        </button>
+        <button className="show-leaderboard" onClick={toggleLeaderboard}>
+          Leaderboard
         </button>
       </div>
     </div>

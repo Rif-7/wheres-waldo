@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import ImgContainer from "./components/ImgContainer";
 import SetUser from "./components/SetUser";
 import GameResult from "./components/GameResult";
+import Leaderboard from "./components/Leaderboard";
 
 import { initializeApp } from "firebase/app";
 import {
@@ -13,6 +14,9 @@ import {
   doc,
   updateDoc,
   getDoc,
+  query,
+  where,
+  getDocs,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -39,6 +43,7 @@ function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const [showSetUp, setShowSetUp] = useState(true);
   const [gameResult, setGameResult] = useState();
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [gameState, setGameState] = useState({
     waldo: false,
     odlaw: false,
@@ -85,7 +90,7 @@ function App() {
     addDoc(collection(db, "timing"), {
       username: username,
       startTime: serverTimestamp(),
-      endTime: "",
+      endTime: false,
     })
       .then((res) => {
         setUserId(res.id);
@@ -129,6 +134,7 @@ function App() {
     setUserId("");
     setGameResult();
     setShowSetUp(true);
+    setShowLeaderboard(false);
     setGameState({
       waldo: false,
       odlaw: false,
@@ -136,13 +142,51 @@ function App() {
     });
   }
 
+  async function getLeaderboard() {
+    const resultRef = query(
+      collection(db, "timing"),
+      where("endTime", "!=", false)
+    );
+    const resultDocs = await getDocs(resultRef);
+    const results = [];
+    resultDocs.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      const { username, startTime, endTime } = doc.data();
+      results.push({ username, timeTaken: (endTime - startTime).toFixed(2) });
+    });
+    // sorts the array from lowest to largest based on the time taken
+    const sortedArray = results.sort((a, b) => a.timeTaken - b.timeTaken);
+    return sortedArray;
+  }
+
+  function toggleLeaderboard() {
+    setShowLeaderboard(true);
+    setShowSetUp(false);
+  }
+
   return (
     <div className="container">
       <Navbar />
-      {showSetUp ? <SetUser timeUser={timeUser} /> : null}
-      {!gameStarted && !showSetUp ? (
-        <GameResult {...gameResult} startNewGame={startNewGame} />
+
+      {showSetUp ? (
+        <SetUser timeUser={timeUser} toggleLeaderboard={toggleLeaderboard} />
       ) : null}
+
+      {!gameStarted && !showSetUp && !showLeaderboard ? (
+        <GameResult
+          {...gameResult}
+          startNewGame={startNewGame}
+          toggleLeaderboard={toggleLeaderboard}
+        />
+      ) : null}
+
+      {showLeaderboard ? (
+        <Leaderboard
+          getLeaderboard={getLeaderboard}
+          startNewGame={startNewGame}
+        />
+      ) : null}
+
       <ImgContainer
         imgUrl="./imgs/wheres-waldo-1.jpg"
         makeMove={makeMove}

@@ -91,7 +91,9 @@ nav {
   text-align: center;
 }
 
-.set-user, .game-result {
+.set-user,
+.game-result,
+.leaderboard {
   z-index: 2;
   position: absolute;
   width: 100%;
@@ -126,12 +128,11 @@ nav {
 
 .game-result {
   background-color: rgb(0, 0, 0, 0.4);
-
 }
 
 .result-content {
   padding: 12px;
-  background-color: #3882f6;
+  background-color: rgb(235, 76, 76);
   height: fit-content;
   border-radius: 4px;
 }
@@ -152,7 +153,10 @@ nav {
   gap: 12px;
 }
 
-.btn-div button, .start-btn {
+.btn-div button,
+ .start-btn,
+.show-leaderboard,
+.close-btn {
   border-radius: 4px;
   padding: 6px 10px;
   border: 2px solid white;
@@ -161,16 +165,62 @@ nav {
   font-size: 18px;
   font-weight: 700;
   color: white;
+  margin-left: 4px;
 }
 
-.btn-div button:hover, .start-btn:hover {
+.btn-div button:hover,
+.start-btn:hover,
+.show-leaderboard:hover,
+.close-btn:hover {
   box-shadow: -5px 5px 5px #888;
 }
 
 .set-user .content {
-  background-color: #3882f6;
+  background-color: rgb(235, 76, 76);
   height: fit-content;
   width: fit-content;
   border-radius: 4px;
   padding: 12px;
+}
+
+.leaderboard {
+  padding-top: 6px;
+}
+
+.leaderboard .header {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.leaderboard-content {
+  display: flex;
+  width: 600px;
+  height: 450px;
+  background-color: rgb(235, 76, 76);
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border-radius: 4px;
+  padding: 12px;
+  margin: 12px;
+  overflow-y: auto;
+}
+
+.leaderboard-item {
+  width: 90%;
+  background-color: inherit;
+  border: 3px solid white;
+  border-radius: 4px;
+  display: flex;
+  padding: 3px 6px;
+  font-size: 24px;
+  justify-content: space-between;
+}
+
+.leaderboard-content .top {
+  width: 90%;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
 }
