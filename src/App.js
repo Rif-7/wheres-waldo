@@ -81,12 +81,7 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  function timeUser(e, username) {
-    if (!username) return;
-
-    // change the text content of the button that sent this event to loading
-    e.target.textContent = "Loading";
-    e.target.disabled = true;
+  function timeUser(username) {
     addDoc(collection(db, "timing"), {
       username: username,
       startTime: serverTimestamp(),
