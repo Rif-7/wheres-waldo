@@ -42,7 +42,6 @@ function Selector({ makeMove, gameState }) {
   async function selectOption(e) {
     const name = e.target.getAttribute("data-value");
     const result = await makeMove(cords["x"], cords["y"], name);
-    console.log(result);
     if (result) {
       setFoundInfo("You found " + name);
       setFoundClass("found-alert");

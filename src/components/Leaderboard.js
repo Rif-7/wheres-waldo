@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 
 function Leaderboard({ getLeaderboard, startNewGame }) {
   const [leaderboardData, setLeaderboardData] = useState([]);
+  const [boardStatus, setBoardStatus] = useState("Loading...");
   useEffect(async () => {
     const data = await getLeaderboard();
+    if (data.length === 0) setBoardStatus("Leaderboard empty :(");
     setLeaderboardData(data);
   }, []);
   return (
@@ -15,6 +17,7 @@ function Leaderboard({ getLeaderboard, startNewGame }) {
             Close
           </button>
         </div>
+        {!leaderboardData.length ? <h1>{boardStatus}</h1> : null}
         {leaderboardData.map((data, index) => {
           return (
             <div className="leaderboard-item" key={index}>
