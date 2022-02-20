@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const options = ["waldo", "odlaw", "woof"];
 
-function Selector(props) {
+function Selector({ makeMove, gameState }) {
   const [selectorClass, setSelectorClass] = useState(
     "selector-content hidden-selector"
   );
   const [cords, setCords] = useState({ x: 0, y: 0 });
-  const { makeMove, gameState } = props;
+  const [showFound, setShowFound] = useState(false);
+  const [foundInfo, setFoundInfo] = useState();
+  const [foundClass, setFoundClass] = useState("found-alert not-found");
+
+  useEffect(() => {
+    if (showFound) {
+      setTimeout(() => setShowFound(false), 1000);
+    }
+  }, [showFound]);
 
   function updateCords(e) {
     const [userX, userY] = [e.nativeEvent.offsetX, e.nativeEvent.offsetY];
@@ -31,9 +39,18 @@ function Selector(props) {
     updateCords(e);
   }
 
-  function selectOption(e) {
+  async function selectOption(e) {
     const name = e.target.getAttribute("data-value");
-    makeMove(cords["x"], cords["y"], name);
+    const result = await makeMove(cords["x"], cords["y"], name);
+    console.log(result);
+    if (result) {
+      setFoundInfo("You found " + name);
+      setFoundClass("found-alert");
+    } else {
+      setFoundInfo(name + " isn't there");
+      setFoundClass("found-alert not-found");
+    }
+    setShowFound(true);
   }
 
   const createStyle = (clicked) =>
@@ -41,6 +58,11 @@ function Selector(props) {
 
   return (
     <div className="selector-modal" onClick={handleClick}>
+      {showFound ? (
+        <div className={foundClass} style={selectorStyle}>
+          {foundInfo}
+        </div>
+      ) : null}
       <div className={selectorClass} style={selectorStyle}>
         <div className="highlight"></div>
         <div className="options">

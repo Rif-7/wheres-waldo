@@ -113,7 +113,9 @@ function App() {
       const newGameState = Object.assign({}, gameState);
       newGameState[name] = true;
       setGameState(newGameState);
+      return true;
     }
+    return false;
   }
 
   async function endGame() {
