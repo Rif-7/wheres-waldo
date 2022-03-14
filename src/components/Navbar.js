@@ -7,8 +7,8 @@ function Navbar() {
 
       <div className="images">
         <div className="nav-img-container">
-          <img alt="" className="nav-img" src="./imgs/woof.jpg"></img>
-          <div>Woof</div>
+          <img alt="" className="nav-img" src="./imgs/wenda.png"></img>
+          <div>Wenda</div>
         </div>
         <div className="nav-img-container">
           <img alt="" className="nav-img" src="./imgs/odlaw.jpg"></img>

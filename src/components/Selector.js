@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const options = ["waldo", "odlaw", "woof"];
+const options = ["waldo", "odlaw", "wenda"];
 
 function Selector({ makeMove, gameState }) {
   const [selectorClass, setSelectorClass] = useState(
@@ -42,6 +42,7 @@ function Selector({ makeMove, gameState }) {
   async function selectOption(e) {
     const name = e.target.getAttribute("data-value");
     const result = await makeMove(cords["x"], cords["y"], name);
+    console.log("X: " + cords["x"] + "  Y: " + cords["y"]);
     if (result) {
       setFoundInfo("You found " + name);
       setFoundClass("found-alert");

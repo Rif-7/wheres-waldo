@@ -15,7 +15,6 @@ nav {
   padding: 5px;
 }
 
-
 .img-container {
   cursor: crosshair;
   position: absolute;
@@ -125,7 +124,6 @@ nav {
   margin-bottom: 5px;
 }
 
-
 .game-result {
   background-color: rgb(0, 0, 0, 0.4);
 }
@@ -139,7 +137,7 @@ nav {
 
 .result-header {
   font-size: 32px;
-  font-weight: 700px
+  font-weight: 700px;
 }
 
 .stat-container {
@@ -154,7 +152,7 @@ nav {
 }
 
 .btn-div button,
- .start-btn,
+.start-btn,
 .show-leaderboard,
 .close-btn {
   border-radius: 4px;

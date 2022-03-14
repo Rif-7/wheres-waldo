@@ -33,7 +33,7 @@ initializeApp(firebaseConfig);
 const db = getFirestore();
 
 const waldoPos = {
-  woof: "4mX9Cb18EFXZQg9OHja4",
+  wenda: "4mX9Cb18EFXZQg9OHja4",
   odlaw: "DQ77QmuGzTN8U2Gqffqg",
   waldo: "LFemWDS9Z2V5JodNM2JR",
 };
@@ -47,7 +47,7 @@ function App() {
   const [gameState, setGameState] = useState({
     waldo: false,
     odlaw: false,
-    woof: false,
+    wenda: false,
   });
 
   useEffect(() => {
@@ -135,7 +135,7 @@ function App() {
     setGameState({
       waldo: false,
       odlaw: false,
-      woof: false,
+      wenda: false,
     });
   }
 
