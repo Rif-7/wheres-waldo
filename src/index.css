@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-family: monospace;
   background-color: rgb(235, 76, 76);
+  overflow-x: hidden;
 }
 
 nav {
@@ -14,6 +15,11 @@ nav {
   font-size: 48px;
   font-weight: 700;
   padding: 5px;
+}
+
+.main-content {
+  width: 100vw;
+  overflow: auto;
 }
 
 .img-container {
