@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.30ef873c.chunk.css",
-    "main.js": "/static/js/main.df06b1dd.chunk.js",
-    "main.js.map": "/static/js/main.df06b1dd.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
-    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/js/2.19a53dbb.chunk.js": "/static/js/2.19a53dbb.chunk.js",
-    "static/js/2.19a53dbb.chunk.js.map": "/static/js/2.19a53dbb.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.d31a021f3104d6ac4c0315df526ae9c3.js": "/precache-manifest.d31a021f3104d6ac4c0315df526ae9c3.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.30ef873c.chunk.css.map": "/static/css/main.30ef873c.chunk.css.map"
+    "main.css": "/wheres-waldo/static/css/main.1c6bb2af.chunk.css",
+    "main.js": "/wheres-waldo/static/js/main.78ce0717.chunk.js",
+    "main.js.map": "/wheres-waldo/static/js/main.78ce0717.chunk.js.map",
+    "runtime~main.js": "/wheres-waldo/static/js/runtime~main.9d782103.js",
+    "runtime~main.js.map": "/wheres-waldo/static/js/runtime~main.9d782103.js.map",
+    "static/js/2.4a16fc97.chunk.js": "/wheres-waldo/static/js/2.4a16fc97.chunk.js",
+    "static/js/2.4a16fc97.chunk.js.map": "/wheres-waldo/static/js/2.4a16fc97.chunk.js.map",
+    "index.html": "/wheres-waldo/index.html",
+    "precache-manifest.fbc153badb9deab6dea33e99075ab72d.js": "/wheres-waldo/precache-manifest.fbc153badb9deab6dea33e99075ab72d.js",
+    "service-worker.js": "/wheres-waldo/service-worker.js",
+    "static/css/main.1c6bb2af.chunk.css.map": "/wheres-waldo/static/css/main.1c6bb2af.chunk.css.map"
   }
 }
