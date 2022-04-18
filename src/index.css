@@ -20,6 +20,8 @@ nav {
 .main-content {
   width: 100vw;
   overflow: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .img-container {

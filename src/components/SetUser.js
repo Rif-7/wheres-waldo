@@ -29,6 +29,7 @@ function SetUser({ timeUser, toggleLeaderboard }) {
         <button className="show-leaderboard" onClick={toggleLeaderboard}>
           Leaderboard
         </button>
+        <h3>Scroll to view full image</h3>
       </div>
     </div>
   );
