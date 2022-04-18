@@ -19,6 +19,7 @@ function Selector({ makeMove, gameState }) {
 
   function updateCords(e) {
     const [userX, userY] = [e.nativeEvent.offsetX, e.nativeEvent.offsetY];
+    console.log(userX, userY);
     setCords({ x: userX, y: userY });
   }
 

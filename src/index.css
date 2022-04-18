@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: monospace;
+  background-color: rgb(235, 76, 76);
 }
 
 nav {
@@ -18,6 +19,8 @@ nav {
 .img-container {
   cursor: crosshair;
   position: absolute;
+  width: 1347px;
+  position: relative;
 }
 
 .waldo-img {
