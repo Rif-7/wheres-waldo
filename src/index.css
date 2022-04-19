@@ -20,8 +20,6 @@ nav {
 .main-content {
   width: 100vw;
   overflow: auto;
-  display: flex;
-  justify-content: center;
 }
 
 .img-container {
@@ -29,6 +27,7 @@ nav {
   position: absolute;
   width: 1347px;
   position: relative;
+  margin: auto;
 }
 
 .waldo-img {
