@@ -1,4 +1,4 @@
-#Wheres-Waldo
+# Wheres-Waldo
 
 A Where's Waldo game using React and Firebase
 
