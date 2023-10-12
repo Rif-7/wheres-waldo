@@ -4,5 +4,9 @@ A Where's Waldo game using React and Firebase
 
 Find Waldo and other characters from "Where's Waldo" in the image and compare your score with others on the leaderboard. 
 
+## Frameworks And Technologies Used:
+  - ReactJS
+  - Firebase
 
-Live: https://rif-7.github.io/wheres-waldo/
+## Live: 
+https://rif-7.github.io/wheres-waldo/
